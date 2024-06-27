@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace AcademiaFacil.Models;
+namespace AcademiaFacil.Models.Tipos;
 
+[Owned]
 public class TipoExercicio
 {
     public TipoExercicio(int id, bool ativo, string nome, string descricao)

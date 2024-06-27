@@ -1,10 +1,27 @@
 ﻿using AcademiaFacil.Data.Enums.Aluno;
 using System.ComponentModel.DataAnnotations;
 
-namespace AcademiaFacil.Models
+namespace AcademiaFacil.Models.Entidades
 {
     public class Aluno
     {
+        public Aluno(int id, bool ativo, TipoPlano tipoPlano, string senha, string imagem, string nome, string email, string celular, string cPF, DateTime dataNascimento, DateTime dataPagamentoPlano, DateTime? dataUltimoPagamento, DateTime? dataProximoPagamento)
+        {
+            Id = id;
+            Ativo = ativo;
+            TipoPlano = tipoPlano;
+            Senha = senha;
+            Imagem = imagem;
+            Nome = nome;
+            Email = email;
+            Celular = celular;
+            CPF = cPF;
+            DataNascimento = dataNascimento;
+            DataPagamentoPlano = dataPagamentoPlano;
+            DataUltimoPagamento = dataUltimoPagamento;
+            DataProximoPagamento = dataProximoPagamento;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -15,7 +32,11 @@ namespace AcademiaFacil.Models
 
         #region "Strings"
 
-        [Required(ErrorMessage = "A foto do equipamento deve ser informada.")]
+        [Required(ErrorMessage = "A senha deve ser informada.")]
+        [DataType(DataType.Password)]
+        public string Senha { get; set; }
+
+        [Required(ErrorMessage = "A foto do aluno deve ser informada.")]
         [DataType(DataType.Url, ErrorMessage = "Url inválida.")]
         public string Imagem { get; set; }
 

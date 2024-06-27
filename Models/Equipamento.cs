@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace AcademiaFacil.Models;
 
+[Owned]
 public class Equipamento
 {
     public Equipamento(int id, bool ativo, string imagem, string nome, string descricao, IEnumerable<float> relacaoCargas, string? ajuda)
@@ -20,7 +22,7 @@ public class Equipamento
 
     public bool Ativo { get; set; }
 
-    [Required(ErrorMessage = "A foto do equipamento deve ser informada.")]
+    [Required(ErrorMessage = "A imagem do equipamento deve ser informada.")]
     [DataType(DataType.Url, ErrorMessage = "Url inválida.")]
     public string Imagem { get; set; }
 
