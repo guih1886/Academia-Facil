@@ -1,4 +1,6 @@
 using AcademiaFacil.Data;
+using AcademiaFacil.Data.Interfaces.Repository;
+using AcademiaFacil.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -9,6 +11,8 @@ builder.Services.AddControllersWithViews();
 
 string connectionString = builder.Configuration.GetConnectionString("AcademiaDB")!;
 builder.Services.AddDbContext<AcademiaDBContext>(opts => opts.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen(c =>
