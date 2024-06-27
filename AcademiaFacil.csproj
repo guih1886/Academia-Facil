@@ -20,4 +20,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Exercicio\" />
+    <Folder Include="Controllers\Treino\" />
+    <Folder Include="Controllers\Professor\" />
+    <Folder Include="Data\Interfaces\Controller\" />
+  </ItemGroup>
+
 </Project>
