@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AcademiaFacil.Data.Interfaces.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiaFacil.Controllers.Aluno
 {
@@ -6,10 +7,17 @@ namespace AcademiaFacil.Controllers.Aluno
     [Route("Aluno")]
     public class AlunoDataController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private IAlunoRepository _alunoRepository;
+
+        public AlunoDataController(IAlunoRepository alunoRepository)
         {
-            return new string[] { "value1", "value2" };
+            _alunoRepository = alunoRepository;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_alunoRepository.GetAlunos());
         }
 
         [HttpGet("{id}")]
