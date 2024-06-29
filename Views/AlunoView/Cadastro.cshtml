@@ -1,0 +1,130 @@
+﻿@using AcademiaFacil.Data.Enums.Aluno
+@using AcademiaFacil.Models.Entidades
+@model Aluno;
+@{
+    ViewData["Title"] = "Cadastro de Alunos";
+}
+<form class="row g-3 needs-validation" asp-controller="AlunoView" asp-action="Cadastrar" method="post">
+
+    <div class="col-md-6 has-validation">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50">
+        <div class="invalid-feedback">
+            Errado
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="email" class="form-label">E-mail</label>
+        <div class="input-group has-validation">
+            <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email">
+            <div class="invalid-feedback">
+                Please choose a username.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <label for="cpf" class="form-label">CPF</label>
+        <div class="input-group has-validation">
+            <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" asp-format="000.000.000-00">
+            <div class="invalid-feedback">
+                Please choose a username.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <label for="celular" class="form-label">Celular</label>
+        <input type="tel" class="form-control" id="celular" required asp-for="Celular" asp-format="">
+        <div class="invalid-feedback">
+            Please provide a valid city.
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <label for="dataNascimento" class="form-label">Data de nascimento</label>
+        <input type="text" class="form-control" id="dataNascimento" required asp-for="DataNascimento" asp-format="dd/mm/YYYY">
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <label for="imagem" class="form-label">Imagem</label>
+        <input type="url" class="form-control" id="imagem" required asp-for="Imagem">
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="text" class="form-control" id="senha" required asp-for="Senha">
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <label for="confirmacaoSenha" class="form-label">Confirmação de senha</label>
+        <input type="text" class="form-control" id="confirmacaoSenha" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <label for="tipoPlano" class="form-label">Tipo do plano</label>
+        <select class="form-select" id="tipoPlano" required asp-for="TipoPlano">
+            <option selected disabled>Tipo do plano</option>
+            @foreach (var item in Enum.GetValues(typeof(TipoPlano)))
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+        <div class="invalid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <label for="validationCustom01" class="form-label">Dia de pagamento</label>
+        <select class="form-select" id="validationCustom04" required asp-for="DiaPagamentoPlano">
+            <option selected disabled>Dia do pagamento</option>
+            @for (int i = 1; i <= 30; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <div class="invalid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </div>
+
+</form>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
