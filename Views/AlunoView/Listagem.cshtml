@@ -1,0 +1,47 @@
+﻿@using AcademiaFacil.Models.Entidades
+@model List<Aluno>;
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-responsive">
+        <thead class="text-center align-items-center">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Tipo do Plano</th>
+                <th scope="col">Dia do pagamento</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Data do último pagamento</th>
+                <th scope="col">Data do próximo pagamento</th>
+            </tr>
+        </thead>
+        <tbody class="text-center text-nowrap align-items-center">
+            @foreach (var aluno in Model)
+            {
+                <tr>
+                    <td>@aluno.Id</td>
+                    <td>@aluno.Ativo</td>
+                    <td><img src="@aluno.Imagem" class="img-fluid" style="width: 100px; height: 100px;"></td>
+                    <td>@aluno.Nome</td>
+                    <td>@aluno.Email</td>
+                    <td>@aluno.CPF</td>
+                    <td>@aluno.Celular</td>
+                    <td>@aluno.TipoPlano</td>
+                    <td>@aluno.DiaPagamentoPlano</td>
+                    <td>@aluno.DataNascimento</td>
+                    <td>@aluno.DataUltimoPagamento</td>
+                    <td>@aluno.DataProximoPagamento</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3 class="text-center">Nenhum aluno cadastrado.</h3>
+}
