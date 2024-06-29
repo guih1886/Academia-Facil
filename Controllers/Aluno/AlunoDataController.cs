@@ -1,17 +1,22 @@
-﻿using AcademiaFacil.Data.Interfaces.Repository;
+﻿using AcademiaFacil.Data.DTO;
+using AcademiaFacil.Data.Interfaces.Repository;
+using AcademiaFacil.Models.Entidades;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AcademiaFacil.Controllers.Aluno
+namespace AcademiaFacil.Controllers.AlunoData
 {
     [ApiController]
     [Route("Aluno")]
     public class AlunoDataController : ControllerBase
     {
         private IAlunoRepository _alunoRepository;
+        private IMapper _mapper;
 
-        public AlunoDataController(IAlunoRepository alunoRepository)
+        public AlunoDataController(IAlunoRepository alunoRepository, IMapper mapper)
         {
             _alunoRepository = alunoRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,8 +32,10 @@ namespace AcademiaFacil.Controllers.Aluno
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Aluno CreateAluno([FromBody] CreateAlunoDto aluno)
         {
+            Aluno novoAluno = _mapper.Map<Aluno>(aluno);
+            return _alunoRepository.CadastrarAluno(novoAluno);
         }
 
         [HttpPut("{id}")]
