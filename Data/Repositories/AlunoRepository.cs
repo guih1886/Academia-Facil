@@ -12,6 +12,14 @@ namespace AcademiaFacil.Data.Repositories
             _dbContext = dbContext;
         }
 
+        public Aluno CadastrarAluno(Aluno aluno)
+        {
+            aluno.Ativo = true;
+            _dbContext.Alunos.Add(aluno);
+            _dbContext.SaveChanges();
+            return aluno;
+        }
+
         public List<Aluno> GetAlunos()
         {
             return _dbContext.Alunos.ToList();
