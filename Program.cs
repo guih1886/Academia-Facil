@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AcademiaDBContext>(opts => opts.UseSqlServer(conne
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Academia", Version = "v1" });
