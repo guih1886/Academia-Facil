@@ -5,7 +5,8 @@ namespace AcademiaFacil.Models.Entidades
 {
     public class Aluno
     {
-        public Aluno(int id, bool ativo, TipoPlano tipoPlano, string senha, string imagem, string nome, string email, string celular, string cPF, DateTime dataNascimento, DateTime dataPagamentoPlano, DateTime? dataUltimoPagamento, DateTime? dataProximoPagamento)
+        public Aluno() { }
+        public Aluno(int id, bool ativo, TipoPlano tipoPlano, string senha, string imagem, string nome, string email, string celular, string cPF, DateTime dataNascimento, int dataPagamentoPlano, DateTime? dataUltimoPagamento, DateTime? dataProximoPagamento)
         {
             Id = id;
             Ativo = ativo;
@@ -17,7 +18,7 @@ namespace AcademiaFacil.Models.Entidades
             Celular = celular;
             CPF = cPF;
             DataNascimento = dataNascimento;
-            DataPagamentoPlano = dataPagamentoPlano;
+            DiaPagamentoPlano = dataPagamentoPlano;
             DataUltimoPagamento = dataUltimoPagamento;
             DataProximoPagamento = dataProximoPagamento;
         }
@@ -26,6 +27,9 @@ namespace AcademiaFacil.Models.Entidades
         public int Id { get; set; }
 
         public bool Ativo { get; set; }
+
+        [Required(ErrorMessage = "O dia de pagamento deve ser informado.")]
+        public int DiaPagamentoPlano { get; set; }
 
         [Required(ErrorMessage = "Informe o tipo de plano do aluno.")]
         public TipoPlano TipoPlano { get; set; }
@@ -64,10 +68,6 @@ namespace AcademiaFacil.Models.Entidades
         [Required(ErrorMessage = "A data de nascimento deve ser informada.")]
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
-
-        [Required(ErrorMessage = "A data de pagamento deve ser informada.")]
-        [DataType(DataType.Date)]
-        public DateTime DataPagamentoPlano { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? DataUltimoPagamento { get; set; }
