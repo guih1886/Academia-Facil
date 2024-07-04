@@ -1,17 +1,16 @@
 ﻿@using AcademiaFacil.Data.Enums.Aluno
 @using AcademiaFacil.Models.Entidades
-@model Aluno;
+@model Aluno
 @{
-    ViewData["Title"] = "Cadastro de Alunos";
+    ViewData["Title"] = "Editar Aluno";
 }
-
 <div class="card-header">@ViewData["Title"]</div>
 <div class="container card-body">
     <form class="row g-3 needs-validation" asp-controller="AlunoView" asp-action="Cadastrar" method="post">
 
         <div class="col-md-6 has-validation">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50">
+            <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50" value="@Model.Nome">
             <div class="invalid-feedback">
                 Errado
             </div>
@@ -30,7 +29,7 @@
         <div class="col-md-3">
             <label for="cpf" class="form-label">CPF</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" asp-format="000.000.000-00">
+                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" asp-format="000.000.000-00" value="@Model.CPF">
                 <div class="invalid-feedback">
                     Please choose a username.
                 </div>
@@ -107,6 +106,7 @@
 
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a class="btn btn-danger" role="button" asp-controller="AlunoView" asp-action="Listagem">Cancelar</a>
         </div>
 
     </form>
