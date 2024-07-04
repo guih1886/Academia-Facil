@@ -1,5 +1,4 @@
-﻿using AcademiaFacil.Data.Enums.Aluno;
-using AcademiaFacil.Data.Interfaces.Repository;
+﻿using AcademiaFacil.Data.Interfaces.Repository;
 using AcademiaFacil.Models.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,10 +29,22 @@ public class AlunoViewController : Controller
         return View();
     }
 
+    public IActionResult Deletar(int id)
+    {
+        _alunoRepository.DeleteAlunoById(id);
+        return RedirectToAction("Listagem");
+    }
+
+    public IActionResult Editar(int id)
+    {
+        Aluno? aluno = _alunoRepository.GetAlunoById(id);
+        return View(aluno);
+    }
+
     [HttpPost]
     public IActionResult Cadastrar(Aluno aluno)
     {
-        _alunoRepository.CadastrarAluno(aluno);
+        _alunoRepository.CreateAluno(aluno);
         return RedirectToAction("Listagem");
     }
 }

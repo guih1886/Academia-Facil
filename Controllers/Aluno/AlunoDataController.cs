@@ -35,7 +35,7 @@ namespace AcademiaFacil.Controllers.AlunoData
         public Aluno CreateAluno([FromBody] CreateAlunoDto aluno)
         {
             Aluno novoAluno = _mapper.Map<Aluno>(aluno);
-            return _alunoRepository.CadastrarAluno(novoAluno);
+            return _alunoRepository.CreateAluno(novoAluno);
         }
 
         [HttpPut("{id}")]
