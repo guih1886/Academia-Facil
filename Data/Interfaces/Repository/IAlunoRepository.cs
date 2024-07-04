@@ -5,5 +5,7 @@ namespace AcademiaFacil.Data.Interfaces.Repository;
 public interface IAlunoRepository
 {
     List<Aluno> GetAlunos();
-    Aluno CadastrarAluno(Aluno aluno);
+    Aluno CreateAluno(Aluno aluno);
+    bool DeleteAlunoById(int id);
+    Aluno? GetAlunoById(int id);
 }
