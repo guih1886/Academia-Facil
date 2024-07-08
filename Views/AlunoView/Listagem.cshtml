@@ -8,7 +8,7 @@
 {
     <div class="container-fluid card-body overflow-scroll">
         <table class="table table-bordered table-responsive text-center">
-            <thead>
+            <thead class="align-content-center">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Ativo</th>
@@ -28,19 +28,19 @@
             <tbody class="text-nowrap">
                 @foreach (var aluno in Model)
                 {
-                    <tr>
+                    <tr class="align-text-top">
                         <td>@aluno.Id</td>
                         <td>
                             <input class="form-check-input" type="checkbox" id="ativo" asp-for="@aluno.Ativo" disabled>
                         </td>
-                        <td><img src="@aluno.Imagem" class="img-fluid" style="width: 100px; height: 100px;"></td>
+                        <td><img src="@aluno.Imagem" class="img-fluid" style="min-width: 50px; max-width: 5vw; min-height: 60px; max-height: 10vh;"></td>
                         <td>@aluno.Nome</td>
                         <td>@aluno.Email</td>
                         <td>@aluno.CPF</td>
                         <td>@aluno.Celular</td>
                         <td>@aluno.TipoPlano</td>
                         <td>@aluno.DiaPagamentoPlano</td>
-                        <td>@aluno.DataNascimento.Date.ToString("dd/MM/yyyy")</td>
+                        <td>@aluno.DataNascimento!.Value.ToString("dd/MM/yyyy")</td>
                         <td>@aluno.DataUltimoPagamento</td>
                         <td>@aluno.DataProximoPagamento</td>
                         <td>

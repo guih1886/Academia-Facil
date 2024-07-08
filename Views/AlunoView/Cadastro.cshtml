@@ -12,97 +12,75 @@
         <div class="col-md-6 has-validation">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50">
-            <div class="invalid-feedback">
-                Errado
-            </div>
+            <span class="alert-danger" asp-validation-for="Nome"></span>
         </div>
 
         <div class="col-md-6">
             <label for="email" class="form-label">E-mail</label>
             <div class="input-group has-validation">
                 <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email">
-                <div class="invalid-feedback">
-                    Please choose a username.
-                </div>
             </div>
+            <span class="alert-danger" asp-validation-for="Email"></span>
         </div>
 
         <div class="col-md-3">
             <label for="cpf" class="form-label">CPF</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" asp-format="000.000.000-00">
-                <div class="invalid-feedback">
-                    Please choose a username.
-                </div>
+                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" maxlength="11">
             </div>
+            <span class="alert-danger" asp-validation-for="CPF"></span>
         </div>
 
         <div class="col-md-2">
             <label for="celular" class="form-label">Celular</label>
-            <input type="tel" class="form-control" id="celular" required asp-for="Celular" asp-format="">
-            <div class="invalid-feedback">
-                Please provide a valid city.
-            </div>
+            <input type="tel" class="form-control" id="celular" required asp-for="Celular" maxlength="11">
+            <span class="alert-danger" asp-validation-for="Celular"></span>
         </div>
 
         <div class="col-md-2">
             <label for="dataNascimento" class="form-label">Data de nascimento</label>
-            <input type="text" class="form-control" id="dataNascimento" required asp-for="DataNascimento" asp-format="dd/mm/YYYY">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <input type="date" class="form-control" id="dataNascimento" required asp-for="DataNascimento">
+            <span class="alert-danger" asp-validation-for="DataNascimento"></span>
         </div>
 
         <div class="col-md-5">
             <label for="imagem" class="form-label">Imagem</label>
             <input type="url" class="form-control" id="imagem" required asp-for="Imagem">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="Imagem"></span>
         </div>
 
         <div class="col-md-4">
             <label for="senha" class="form-label">Senha</label>
-            <input type="text" class="form-control" id="senha" required asp-for="Senha">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <input type="password" class="form-control" id="senha" required asp-for="Senha">
+            <span class="alert-danger" asp-validation-for="Senha"></span>
         </div>
 
         <div class="col-md-4">
             <label for="confirmacaoSenha" class="form-label">Confirmação de senha</label>
-            <input type="text" class="form-control" id="confirmacaoSenha" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <input type="password" class="form-control" id="confirmacaoSenha" required asp-for="ConfirmacaoSenha">
+            <span class="alert-danger" asp-validation-for="ConfirmacaoSenha"></span>
         </div>
 
         <div class="col-md-2">
             <label for="tipoPlano" class="form-label">Tipo do plano</label>
             <select class="form-select" id="tipoPlano" required asp-for="TipoPlano">
-                <option selected disabled>Tipo do plano</option>
                 @foreach (var item in Enum.GetValues(typeof(TipoPlano)))
                 {
                     <option value="@item">@item</option>
                 }
             </select>
-            <div class="invalid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="TipoPlano"></span>
         </div>
 
         <div class="col-md-2">
             <label for="validationCustom01" class="form-label">Dia de pagamento</label>
             <select class="form-select" id="validationCustom04" required asp-for="DiaPagamentoPlano">
-                <option selected disabled>Dia do pagamento</option>
                 @for (int i = 1; i <= 30; i++)
                 {
                     <option value="@i">@i</option>
                 }
             </select>
-            <div class="invalid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="DiaPagamentoPlano"></span>
         </div>
 
         <div class="col-12">

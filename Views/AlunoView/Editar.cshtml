@@ -6,58 +6,42 @@
 }
 <div class="card-header">@ViewData["Title"]</div>
 <div class="container card-body">
-    <form class="row g-3 needs-validation" asp-controller="AlunoView" asp-action="AtualizarAluno" asp-route-id="@Model.Id">
+    <form class="row g-3" asp-controller="AlunoView" asp-action="AtualizarAluno" asp-route-id="@Model.Id">
 
-        <div class="col-md-6 has-validation">
+        <div class="col-md-6">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50" value="@Model.Nome">
-            <div class="invalid-feedback">
-                Errado
-            </div>
+            <span class="alert-danger" asp-validation-for="Nome"></span>
         </div>
 
         <div class="col-md-6">
             <label for="email" class="form-label">E-mail</label>
-            <div class="input-group has-validation">
-                <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email" value="@Model.Email">
-                <div class="invalid-feedback">
-                    Please choose a username.
-                </div>
-            </div>
+            <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email" value="@Model.Email">
+            <span class="alert-danger" asp-validation-for="Email"></span>
         </div>
 
         <div class="col-md-3">
             <label for="cpf" class="form-label">CPF</label>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" maxlength="11" value="@Model.CPF">
-                <div class="invalid-feedback">
-                    Please choose a username.
-                </div>
-            </div>
+            <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" maxlength="11" value="@Model.CPF">
+            <span class="alert-danger" asp-validation-for="CPF"></span>
         </div>
 
         <div class="col-md-2">
             <label for="celular" class="form-label">Celular</label>
             <input type="tel" class="form-control" id="celular" required asp-for="Celular" value="@Model.Celular" maxlength="11">
-            <div class="invalid-feedback">
-                Please provide a valid city.
-            </div>
+            <span class="alert-danger" asp-validation-for="Celular"></span>
         </div>
 
         <div class="col-md-2">
             <label for="dataNascimento" class="form-label">Data de nascimento</label>
             <input type="date" class="form-control" id="dataNascimento" required asp-for="DataNascimento">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="DataNascimento"></span>
         </div>
 
         <div class="col-md-5">
             <label for="imagem" class="form-label">Imagem</label>
             <input type="url" class="form-control" id="imagem" required asp-for="Imagem" value="@Model.Imagem">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="Imagem"></span>
         </div>
 
         <div class="col-md-2">
@@ -69,23 +53,19 @@
                     <option value="@item">@item</option>
                 }
             </select>
-            <div class="invalid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="TipoPlano"></span>
         </div>
 
         <div class="col-md-2">
-            <label for="validationCustom01" class="form-label">Dia de pagamento</label>
-            <select class="form-select" id="validationCustom04" required asp-for="DiaPagamentoPlano">
+            <label for="diaDePagamento" class="form-label">Dia de pagamento</label>
+            <select class="form-select" id="diaDePagamento" required asp-for="DiaPagamentoPlano">
                 <option selected disabled>Dia do pagamento</option>
                 @for (int i = 1; i <= 30; i++)
                 {
                     <option value="@i">@i</option>
                 }
             </select>
-            <div class="invalid-feedback">
-                Looks good!
-            </div>
+            <span class="alert-danger" asp-validation-for="DiaPagamentoPlano"></span>
         </div>
 
         <div class="form-check ms-2">
@@ -102,4 +82,4 @@
 
     </form>
 </div>
-<script src="~/js/validacaoFormulario.js"/>
+<script src="~/js/validacaoFormulario.js" />
