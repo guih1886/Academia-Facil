@@ -1,4 +1,5 @@
-﻿using AcademiaFacil.Data.Interfaces.Repository;
+﻿using AcademiaFacil.Data.DTO;
+using AcademiaFacil.Data.Interfaces.Repository;
 using AcademiaFacil.Models.Entidades;
 
 namespace AcademiaFacil.Data.Repositories
@@ -43,9 +44,9 @@ namespace AcademiaFacil.Data.Repositories
             return _dbContext.Alunos.ToList();
         }
 
-        public Aluno UpdateAluno(Aluno alunoAtualizado)
+        public Aluno UpdateAluno(int id, UpdateAlunoDto alunoAtualizado)
         {
-            Aluno? aluno = _dbContext.Alunos.FirstOrDefault(a => a.Id == alunoAtualizado.Id);
+            Aluno? aluno = _dbContext.Alunos.FirstOrDefault(a => a.Id == id);
             if (aluno == null) throw new Exception("Aluno não encontrado.");
             try
             {
