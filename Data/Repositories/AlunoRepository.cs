@@ -49,6 +49,7 @@ namespace AcademiaFacil.Data.Repositories
             if (aluno == null) throw new Exception("Aluno não encontrado.");
             try
             {
+                aluno.Ativo = alunoAtualizado.Ativo;
                 aluno.Nome = alunoAtualizado.Nome;
                 aluno.Email = alunoAtualizado.Email;
                 aluno.CPF = alunoAtualizado.CPF;

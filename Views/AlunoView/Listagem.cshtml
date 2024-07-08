@@ -30,7 +30,9 @@
                 {
                     <tr>
                         <td>@aluno.Id</td>
-                        <td>@aluno.Ativo</td>
+                        <td>
+                            <input class="form-check-input" type="checkbox" id="ativo" asp-for="@aluno.Ativo" disabled>
+                        </td>
                         <td><img src="@aluno.Imagem" class="img-fluid" style="width: 100px; height: 100px;"></td>
                         <td>@aluno.Nome</td>
                         <td>@aluno.Email</td>
