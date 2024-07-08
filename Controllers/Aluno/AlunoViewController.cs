@@ -41,6 +41,12 @@ public class AlunoViewController : Controller
         return View(aluno);
     }
 
+    public IActionResult AtualizarAluno(Aluno aluno)
+    {
+        _alunoRepository.UpdateAluno(aluno);
+        return RedirectToAction("Listagem");
+    }
+
     [HttpPost]
     public IActionResult Cadastrar(Aluno aluno)
     {

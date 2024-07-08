@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Shared\_Navbar.cshtml" />
+    <Content Remove="wwwroot\js\validacaoFormulario.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +39,12 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Shared\_Navbar.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\validacaoFormulario.js" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Shared\_NavBar.cshtml" />
+    <None Include="wwwroot\js\validacaoFormulario.js" />
   </ItemGroup>
 
 </Project>

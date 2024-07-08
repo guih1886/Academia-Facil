@@ -42,5 +42,29 @@ namespace AcademiaFacil.Data.Repositories
         {
             return _dbContext.Alunos.ToList();
         }
+
+        public Aluno UpdateAluno(Aluno alunoAtualizado)
+        {
+            Aluno? aluno = _dbContext.Alunos.FirstOrDefault(a => a.Id == alunoAtualizado.Id);
+            if (aluno == null) throw new Exception("Aluno não encontrado.");
+            try
+            {
+                aluno.Nome = alunoAtualizado.Nome;
+                aluno.Email = alunoAtualizado.Email;
+                aluno.CPF = alunoAtualizado.CPF;
+                aluno.Celular = alunoAtualizado.Celular;
+                aluno.DataNascimento = alunoAtualizado.DataNascimento;
+                aluno.Imagem = alunoAtualizado.Imagem;
+                aluno.TipoPlano = alunoAtualizado.TipoPlano;
+                aluno.DiaPagamentoPlano = alunoAtualizado.DiaPagamentoPlano;
+                _dbContext.Alunos.Update(aluno);
+                _dbContext.SaveChanges();
+                return aluno;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao atualizar o aluno." + e.Message);
+            }
+        }
     }
 }

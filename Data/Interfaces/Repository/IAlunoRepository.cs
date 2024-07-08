@@ -8,4 +8,5 @@ public interface IAlunoRepository
     Aluno CreateAluno(Aluno aluno);
     bool DeleteAlunoById(int id);
     Aluno? GetAlunoById(int id);
+    Aluno UpdateAluno(Aluno aluno);
 }

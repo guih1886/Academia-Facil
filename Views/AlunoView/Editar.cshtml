@@ -6,7 +6,7 @@
 }
 <div class="card-header">@ViewData["Title"]</div>
 <div class="container card-body">
-    <form class="row g-3 needs-validation" asp-controller="AlunoView" asp-action="Cadastrar" method="post">
+    <form class="row g-3 needs-validation" asp-controller="AlunoView" asp-action="AtualizarAluno" asp-route-id="@Model.Id">
 
         <div class="col-md-6 has-validation">
             <label for="nome" class="form-label">Nome</label>
@@ -19,7 +19,7 @@
         <div class="col-md-6">
             <label for="email" class="form-label">E-mail</label>
             <div class="input-group has-validation">
-                <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email">
+                <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email" value="@Model.Email">
                 <div class="invalid-feedback">
                     Please choose a username.
                 </div>
@@ -29,7 +29,7 @@
         <div class="col-md-3">
             <label for="cpf" class="form-label">CPF</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" asp-format="000.000.000-00" value="@Model.CPF">
+                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" maxlength="11" value="@Model.CPF">
                 <div class="invalid-feedback">
                     Please choose a username.
                 </div>
@@ -38,7 +38,7 @@
 
         <div class="col-md-2">
             <label for="celular" class="form-label">Celular</label>
-            <input type="tel" class="form-control" id="celular" required asp-for="Celular" asp-format="">
+            <input type="tel" class="form-control" id="celular" required asp-for="Celular" value="@Model.Celular" maxlength="11">
             <div class="invalid-feedback">
                 Please provide a valid city.
             </div>
@@ -46,7 +46,7 @@
 
         <div class="col-md-2">
             <label for="dataNascimento" class="form-label">Data de nascimento</label>
-            <input type="text" class="form-control" id="dataNascimento" required asp-for="DataNascimento" asp-format="dd/mm/YYYY">
+            <input type="date" class="form-control" id="dataNascimento" required asp-for="DataNascimento">
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -54,23 +54,7 @@
 
         <div class="col-md-5">
             <label for="imagem" class="form-label">Imagem</label>
-            <input type="url" class="form-control" id="imagem" required asp-for="Imagem">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="text" class="form-control" id="senha" required asp-for="Senha">
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <label for="confirmacaoSenha" class="form-label">Confirmação de senha</label>
-            <input type="text" class="form-control" id="confirmacaoSenha" required>
+            <input type="url" class="form-control" id="imagem" required asp-for="Imagem" value="@Model.Imagem">
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -105,30 +89,10 @@
         </div>
 
         <div class="col-12">
-            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <button class="btn btn-warning" type="submit">Editar</button>
             <a class="btn btn-danger" role="button" asp-controller="AlunoView" asp-action="Listagem">Cancelar</a>
         </div>
 
     </form>
 </div>
-
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (() => {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
-</script>
+<script src="~/js/validacaoFormulario.js"/>
