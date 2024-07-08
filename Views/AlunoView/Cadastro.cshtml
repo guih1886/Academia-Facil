@@ -7,9 +7,9 @@
 
 <div class="card-header">@ViewData["Title"]</div>
 <div class="container card-body">
-    <form class="row g-3 needs-validation" asp-controller="AlunoView" asp-action="Cadastrar" method="post">
+    <form class="row g-3" asp-controller="AlunoView" asp-action="Cadastrar" method="post">
 
-        <div class="col-md-6 has-validation">
+        <div class="col-md-6 ">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50">
             <span class="alert-danger" asp-validation-for="Nome"></span>
@@ -17,17 +17,13 @@
 
         <div class="col-md-6">
             <label for="email" class="form-label">E-mail</label>
-            <div class="input-group has-validation">
-                <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email">
-            </div>
+            <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend" required asp-for="Email">
             <span class="alert-danger" asp-validation-for="Email"></span>
         </div>
 
         <div class="col-md-3">
             <label for="cpf" class="form-label">CPF</label>
-            <div class="input-group has-validation">
-                <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" maxlength="11">
-            </div>
+            <input type="text" class="form-control" id="cpf" aria-describedby="inputGroupPrepend" required asp-for="CPF" maxlength="11">
             <span class="alert-danger" asp-validation-for="CPF"></span>
         </div>
 
@@ -58,7 +54,6 @@
         <div class="col-md-4">
             <label for="confirmacaoSenha" class="form-label">Confirmação de senha</label>
             <input type="password" class="form-control" id="confirmacaoSenha" required asp-for="ConfirmacaoSenha">
-            <span class="alert-danger" asp-validation-for="ConfirmacaoSenha"></span>
         </div>
 
         <div class="col-md-2">
@@ -73,8 +68,8 @@
         </div>
 
         <div class="col-md-2">
-            <label for="validationCustom01" class="form-label">Dia de pagamento</label>
-            <select class="form-select" id="validationCustom04" required asp-for="DiaPagamentoPlano">
+            <label for="diaPagamentoPlano" class="form-label">Dia de pagamento</label>
+            <select class="form-select" id="diaPagamentoPlano" required asp-for="DiaPagamentoPlano">
                 @for (int i = 1; i <= 30; i++)
                 {
                     <option value="@i">@i</option>
@@ -89,4 +84,3 @@
 
     </form>
 </div>
-<script src="~/js/validacaoFormulario.js" />
