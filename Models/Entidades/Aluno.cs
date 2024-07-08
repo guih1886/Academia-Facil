@@ -37,12 +37,12 @@ namespace AcademiaFacil.Models.Entidades
         #region "Strings"
 
         [Required(ErrorMessage = "A senha deve ser informada.")]
+        [Compare("ConfirmacaoSenha", ErrorMessage = "As senhas não são iguais.")]
         [DataType(DataType.Password)]
         public string? Senha { get; set; }
 
         [Required(ErrorMessage = "A confirmação da senha deve ser informada.")]
         [DataType(DataType.Password)]
-        [Compare("Senha", ErrorMessage = "As senhas não são iguais.")]
         public string? ConfirmacaoSenha { get; set; }
 
         [Required(ErrorMessage = "A foto do aluno deve ser informada.")]
