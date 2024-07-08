@@ -5,6 +5,18 @@ namespace AcademiaFacil.Data.DTO;
 
 public class CreateAlunoDto
 {
+    public CreateAlunoDto(int diaPagamentoPlano, TipoPlano tipoPlano, string senha, string imagem, string nome, string email, string celular, string cPF, DateTime dataNascimento)
+    {
+        DiaPagamentoPlano = diaPagamentoPlano;
+        TipoPlano = tipoPlano;
+        Senha = senha;
+        Imagem = imagem;
+        Nome = nome;
+        Email = email;
+        Celular = celular;
+        CPF = cPF;
+        DataNascimento = dataNascimento;
+    }
 
     [Required(ErrorMessage = "O dia de pagamento deve ser informado.")]
     public int DiaPagamentoPlano { get; set; }
