@@ -43,4 +43,25 @@ public class EquipamentoRepository : IEquipamentoRepository
     {
         return _dbContext.Equipamentos.ToList();
     }
+
+    public Equipamento? UpdateEquipamento(int id, Equipamento equipamentoAlterado)
+    {
+        Equipamento? equipamento = FindById(id);
+        if (equipamento != null)
+        {
+            equipamento.Ativo = equipamentoAlterado.Ativo;
+            equipamento.Nome = equipamentoAlterado.Nome;
+            equipamento.Imagem = equipamentoAlterado.Imagem;
+            equipamento.Descricao = equipamentoAlterado.Descricao;
+            equipamento.RelacaoCargas = equipamentoAlterado.RelacaoCargas;
+            equipamento.Ajuda = equipamentoAlterado.Ajuda;
+            _dbContext.Equipamentos.Update(equipamento);
+            _dbContext.SaveChanges();
+            return equipamento;
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

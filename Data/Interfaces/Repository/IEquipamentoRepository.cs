@@ -8,4 +8,5 @@ public interface IEquipamentoRepository
     bool DeleteEquipamento(Equipamento equipamento);
     Equipamento? FindById(int id);
     List<Equipamento> GetEquipamentos();
+    Equipamento? UpdateEquipamento(int id, Equipamento equipamento);
 }
