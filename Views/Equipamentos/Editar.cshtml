@@ -1,45 +1,59 @@
-﻿@using AcademiaFacil.Models
-@model Equipamento;
+﻿@using AcademiaFacil.Models.View;
+@model EquipamentoViewModel;
 @{
     ViewData["Title"] = "Editar Equipamento";
 }
 
 <div class="card-header">@ViewData["Title"]</div>
 <div class="container card-body">
-    <form class="row g-3" asp-controller="Equipamentos" asp-action="EditarEquipamento" asp-route-id="@Model.Id">
+    <form class="row g-3" asp-controller="Equipamentos" asp-action="EditarEquipamento" asp-route-id="@Model.Equipamento.Id">
 
         <div class="col-md-6 ">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="100" value="@Model.Nome">
-            <span class="alert-danger" asp-validation-for="Nome"></span>
+            <input type="text" class="form-control" id="nome" asp-for="Equipamento.Nome" maxlength="100" value="@Model.Equipamento.Nome">
+            <span class="alert-danger" asp-validation-for="Equipamento.Nome"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="imagem" class="form-label">Imagem</label>
-            <input type="url" class="form-control" id="nome" required asp-for="Imagem" value="@Model.Imagem">
-            <span class="alert-danger" asp-validation-for="Imagem"></span>
+            <input type="url" class="form-control" id="nome" asp-for="Equipamento.Imagem" value="@Model.Equipamento.Imagem">
+            <span class="alert-danger" asp-validation-for="Equipamento.Imagem"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="descricao" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="descricao" required asp-for="Descricao" maxlength="150" value="@Model.Descricao">
-            <span class="alert-danger" asp-validation-for="Descricao"></span>
+            <input type="text" class="form-control" id="descricao" required asp-for="Equipamento.Descricao" maxlength="150" value="@Model.Equipamento.Descricao">
+            <span class="alert-danger" asp-validation-for="Equipamento.Descricao"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="relacaoCarga" class="form-label">Relação de Cargas</label>
-            <input type="text" class="form-control" id="relacaoCarga" required asp-for="RelacaoCargas" value="@Model.RelacaoCargas">
+            @if (Model.RelacaoCargas.Any())
+            {
+                <select class="form-select" id="relacaoCarga" asp-for="Equipamento.RelacaoCargasId">
+                    @foreach (var item in Model.RelacaoCargas)
+                    {
+                        <option value="@item.Id">@item.Descricao - @item.Relacao</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <select class="form-select" id="relacaoCarga" disabled>
+                    <option selected value="0">Sem relação de cargas cadastradas.</option>
+                </select>
+            }
             <span class="alert-danger" asp-validation-for="RelacaoCargas"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="ajuda" class="form-label">Ajuda</label>
-            <input type="url" class="form-control" id="ajuda" required asp-for="Ajuda" value="@Model.Ajuda">
-            <span class="alert-danger" asp-validation-for="Ajuda"></span>
+            <input type="url" class="form-control" id="ajuda" required asp-for="Equipamento.Ajuda" value="@Model.Equipamento.Ajuda">
+            <span class="alert-danger" asp-validation-for="Equipamento.Ajuda"></span>
         </div>
 
         <div class="form-check ms-2">
-            <input class="form-check-input" type="checkbox" id="ativo" asp-for="@Model.Ativo">
+            <input class="form-check-input" type="checkbox" id="ativo" asp-for="@Model.Equipamento.Ativo">
             <label class="form-check-label" for="ativo">
                 Ativo
             </label>
