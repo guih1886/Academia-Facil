@@ -1,3 +1,46 @@
-﻿@{
+﻿@using AcademiaFacil.Models
+@model Equipamento;
+@{
     ViewData["Title"] = "Novo Equipamento";
 }
+
+<div class="card-header">@ViewData["Title"]</div>
+<div class="container card-body">
+    <form class="row g-3" asp-controller="Equipamentos" asp-action="CadastrarEquipamento" method="post">
+
+        <div class="col-md-6 ">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Nome"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="imagem" class="form-label">Imagem</label>
+            <input type="url" class="form-control" id="nome" required asp-for="Imagem" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Imagem"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" required asp-for="Descricao" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="relacaoCarga" class="form-label">Relação de Cargas</label>
+            <input type="text" class="form-control" id="relacaoCarga" required asp-for="RelacaoCargas" maxlength="50">
+            <span class="alert-danger" asp-validation-for="RelacaoCargas"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="ajuda" class="form-label">Ajuda</label>
+            <input type="url" class="form-control" id="ajuda" required asp-for="Ajuda" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Ajuda"></span>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a class="btn btn-danger" asp-controller="Equipamentos" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>
