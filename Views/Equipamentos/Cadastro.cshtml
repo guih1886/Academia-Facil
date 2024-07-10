@@ -36,10 +36,10 @@
             <label for="relacaoCarga" class="form-label">Relação de Cargas</label>
             @if (Model.RelacaoCargas.Any())
             {
-                <select class="form-select" id="relacaoCarga" asp-for="Equipamento.RelacaoCargas">
+                <select class="form-select" id="relacaoCarga" asp-for="Equipamento.RelacaoCargasId">
                     @foreach (var item in Model.RelacaoCargas)
                     {
-                        <option value="@item">@item.Descricao - @item.Relacao</option>
+                        <option value="@item.Id">@item.Descricao - @item.Relacao</option>
                     }
                 </select>
             }

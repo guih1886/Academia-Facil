@@ -1,6 +1,7 @@
 ﻿using AcademiaFacil.Models.Tipos;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AcademiaFacil.Models;
 
@@ -9,14 +10,14 @@ public class Equipamento
 {
     public Equipamento() { }
 
-    public Equipamento(int id, bool ativo, string imagem, string nome, string descricao, RelacaoCargas relacaoCargas, string? ajuda)
+    public Equipamento(int id, bool ativo, string imagem, string nome, string descricao, int relacaoCargas, string? ajuda)
     {
         Id = id;
         Ativo = ativo;
         Imagem = imagem;
         Nome = nome;
         Descricao = descricao;
-        RelacaoCargas = relacaoCargas;
+        RelacaoCargasId = relacaoCargas;
         Ajuda = ajuda;
     }
 
@@ -37,8 +38,11 @@ public class Equipamento
     [StringLength(150, MinimumLength = 20, ErrorMessage = "Descrição muito curta.")]
     public string? Descricao { get; set; }
 
+    [ForeignKey("RelacaoCargas")]
     [Required(ErrorMessage = "A relação das cargas deve ser informada.")]
-    public RelacaoCargas? RelacaoCargas { get; set; }
+    public int? RelacaoCargasId { get; set; }
+
+    public virtual RelacaoCargas RelacaoCargas { get; set; }
 
     [DataType(DataType.Url, ErrorMessage = "Url inválida.")]
     public string? Ajuda { get; set; }
