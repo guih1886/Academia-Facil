@@ -24,6 +24,25 @@ public class EquipamentosController : Controller
         return View();
     }
 
+    public IActionResult Editar()
+    {
+        return View();
+    }
+
+    public IActionResult Deletar(int id)
+    {
+        Equipamento? equipamento = _equipamentoRepository.FindById(id);
+        if (equipamento == null) return NotFound("Equipamento não encontrado.");
+        if (_equipamentoRepository.DeleteEquipamento(equipamento))
+        {
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return ValidationProblem("Erro ao excluir o equipamento.");
+        }
+    }
+
     [HttpPost]
     public IActionResult CadastrarEquipamento(Equipamento equipamento)
     {
