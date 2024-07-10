@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 string connectionString = builder.Configuration.GetConnectionString("AcademiaDB")!;
 builder.Services.AddDbContext<AcademiaDBContext>(opts => opts.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<IRelacaoCargasRepository, RelacaoCargasRepository>();
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 builder.Services.AddScoped<IEquipamentoRepository, EquipamentoRepository>();
 
