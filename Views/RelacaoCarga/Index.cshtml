@@ -1,3 +1,51 @@
-﻿@{
+﻿@using AcademiaFacil.Models.Tipos;
+@model IList<RelacaoCargas>;
+@{
     ViewData["Title"] = "Lista de Relação de Cargas";
+}
+<div class="card-header">@ViewData["Title"]</div>
+@if (Model.Any())
+{
+    <div class="container-fluid card-body overflow-scroll">
+        <table class="table table-bordered table-responsive text-center">
+            <thead class="align-content-center">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Ativo</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Relação de Cargas</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="text-nowrap">
+                @foreach (var relacao in Model)
+                {
+                    <tr class="align-text-top">
+                        <td>@relacao.Id</td>
+                        <td>
+                            <input class="form-check-input" type="checkbox" id="ativo" asp-for="@relacao.Ativo" disabled>
+                        </td>
+                        <td>@relacao.Descricao</td>
+                        <td>@relacao.Relacao</td>
+                        <td>
+                            <a role="button" class="btn btn-warning" asp-route-id="@relacao.Id" asp-controller="RelacaoCarga" asp-action="Editar">Editar</a>
+                            <a role="button" class="btn btn-danger" asp-route-id="@relacao.Id" asp-controller="RelacaoCarga" asp-action="Deletar" onclick="return confirmacaoDeletar('@relacao.Id')">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            function confirmacaoDeletar(nome) {
+                return confirm(`Deseja mesmo excluir o relação ${nome}?`);
+            }
+        </script>
+    </div>
+}
+else
+{
+    <h3 class="text-center pt-3">Nenhuma relação de carga cadastrada.</h3>
+    <div class="text-center pt-3">
+    <a class="btn btn-primary" asp-controller="RelacaoCarga" asp-action="Cadastrar">Cadastrar Relação de Carga</a>
+    </div>
 }
