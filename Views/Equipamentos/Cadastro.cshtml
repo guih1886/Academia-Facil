@@ -15,25 +15,33 @@
         </div>
 
         <div class="col-md-6 ">
-            <label for="imagem" class="form-label">Imagem</label>
-            <input type="url" class="form-control" id="nome" required asp-for="Equipamento.Imagem">
-            <span class="alert-danger" asp-validation-for="Equipamento.Imagem"></span>
-        </div>
-
-        <div class="col-md-6 ">
             <label for="descricao" class="form-label">Descrição</label>
             <input type="text" class="form-control" id="descricao" required asp-for="Equipamento.Descricao" maxlength="150">
             <span class="alert-danger" asp-validation-for="Equipamento.Descricao"></span>
         </div>
 
         <div class="col-md-6 ">
+            <label for="imagem" class="form-label">Imagem</label>
+            <input type="url" class="form-control" id="nome" required asp-for="Equipamento.Imagem">
+            <span class="alert-danger" asp-validation-for="Equipamento.Imagem"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="ajuda" class="form-label">Ajuda</label>
+            <input type="url" class="form-control" id="ajuda" required asp-for="Equipamento.Ajuda">
+            <span class="alert-danger" asp-validation-for="Equipamento.Ajuda"></span>
+        </div>
+
+        <div class="col-md-6 ">
             <label for="relacaoCarga" class="form-label">Relação de Cargas</label>
             @if (Model.RelacaoCargas.Any())
             {
-                @foreach (var item in Model.RelacaoCargas)
-                {
-                    <option value="@item">@item</option>
-                }
+                <select class="form-select" id="relacaoCarga" asp-for="Equipamento.RelacaoCargas">
+                    @foreach (var item in Model.RelacaoCargas)
+                    {
+                        <option value="@item">@item.Descricao - @item.Relacao</option>
+                    }
+                </select>
             }
             else
             {
@@ -42,12 +50,6 @@
                 </select>
             }
             <span class="alert-danger" asp-validation-for="RelacaoCargas"></span>
-        </div>
-
-        <div class="col-md-6 ">
-            <label for="ajuda" class="form-label">Ajuda</label>
-            <input type="url" class="form-control" id="ajuda" required asp-for="Equipamento.Ajuda">
-            <span class="alert-danger" asp-validation-for="Equipamento.Ajuda"></span>
         </div>
 
         <div class="col-12">
