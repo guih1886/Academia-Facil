@@ -1,3 +1,27 @@
-﻿@{
+﻿@using AcademiaFacil.Models.Tipos;
+@model RelacaoCargas;
+@{
     ViewData["Title"] = "Cadastro de Relação de Cargas";
 }
+<div class="card-header">@ViewData["Title"]</div>
+<div class="container card-body">
+    <form class="row g-3" asp-controller="RelacaoCarga" asp-action="CadastrarRelacaoCarga" method="post">
+
+        <div class="col-md-12 ">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" required asp-for="Descricao" maxlength="150">
+            <span class="alert-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+        <div class="col-md-12 ">
+            <label for="relacaoCargas" class="form-label">Relação de Cargas</label>
+            <input type="text" class="form-control" id="relacaoCargas" required asp-for="Relacao" maxlength="150">
+            <span class="alert-danger" asp-validation-for="Relacao"></span>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a class="btn btn-danger" asp-controller="RelacaoCarga" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>
