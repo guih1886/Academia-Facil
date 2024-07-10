@@ -53,7 +53,7 @@ public class EquipamentoRepository : IEquipamentoRepository
             equipamento.Nome = equipamentoAlterado.Nome;
             equipamento.Imagem = equipamentoAlterado.Imagem;
             equipamento.Descricao = equipamentoAlterado.Descricao;
-            equipamento.RelacaoCargas = equipamentoAlterado.RelacaoCargas;
+            equipamento.RelacaoCargasId = equipamentoAlterado.RelacaoCargasId;
             equipamento.Ajuda = equipamentoAlterado.Ajuda;
             _dbContext.Equipamentos.Update(equipamento);
             _dbContext.SaveChanges();
