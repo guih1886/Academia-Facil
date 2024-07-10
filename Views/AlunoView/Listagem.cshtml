@@ -45,12 +45,17 @@
                         <td>@aluno.DataProximoPagamento</td>
                         <td>
                             <a role="button" class="btn btn-warning" asp-route-id="@aluno.Id" asp-controller="AlunoView" asp-action="Editar">Editar</a>
-                            <a role="button" class="btn btn-danger" asp-route-id="@aluno.Id" asp-controller="AlunoView" asp-action="Deletar">Excluir</a>
+                            <a role="button" class="btn btn-danger" asp-route-id="@aluno.Id" asp-controller="AlunoView" asp-action="Deletar" onclick="return confirmacaoDeletar('@aluno.Nome')">Excluir</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+        <script>
+            function confirmacaoDeletar(nome) {
+                return confirm(`Deseja mesmo excluir o aluno ${nome}?`);
+            }
+        </script>
     </div>
 }
 else
