@@ -1,5 +1,5 @@
-﻿@using AcademiaFacil.Models
-@model Equipamento;
+﻿@using AcademiaFacil.Models.View;
+@model EquipamentoViewModel;
 @{
     ViewData["Title"] = "Novo Equipamento";
 }
@@ -10,36 +10,55 @@
 
         <div class="col-md-6 ">
             <label for="nome" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nome" required asp-for="Nome" maxlength="50">
-            <span class="alert-danger" asp-validation-for="Nome"></span>
+            <input type="text" class="form-control" id="nome" required asp-for="Equipamento.Nome" maxlength="100">
+            <span class="alert-danger" asp-validation-for="Equipamento.Nome"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="imagem" class="form-label">Imagem</label>
-            <input type="url" class="form-control" id="nome" required asp-for="Imagem" maxlength="50">
-            <span class="alert-danger" asp-validation-for="Imagem"></span>
+            <input type="url" class="form-control" id="nome" required asp-for="Equipamento.Imagem">
+            <span class="alert-danger" asp-validation-for="Equipamento.Imagem"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="descricao" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="descricao" required asp-for="Descricao" maxlength="50">
-            <span class="alert-danger" asp-validation-for="Descricao"></span>
+            <input type="text" class="form-control" id="descricao" required asp-for="Equipamento.Descricao" maxlength="150">
+            <span class="alert-danger" asp-validation-for="Equipamento.Descricao"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="relacaoCarga" class="form-label">Relação de Cargas</label>
-            <input type="text" class="form-control" id="relacaoCarga" required asp-for="RelacaoCargas" maxlength="50">
+            @if (Model.RelacaoCargas.Any())
+            {
+                @foreach (var item in Model.RelacaoCargas)
+                {
+                    <option value="@item">@item</option>
+                }
+            }
+            else
+            {
+                <select class="form-select" id="relacaoCarga" disabled>
+                    <option selected value="0">Sem relação de cargas cadastradas.</option>
+                </select>
+            }
             <span class="alert-danger" asp-validation-for="RelacaoCargas"></span>
         </div>
 
         <div class="col-md-6 ">
             <label for="ajuda" class="form-label">Ajuda</label>
-            <input type="url" class="form-control" id="ajuda" required asp-for="Ajuda" maxlength="50">
-            <span class="alert-danger" asp-validation-for="Ajuda"></span>
+            <input type="url" class="form-control" id="ajuda" required asp-for="Equipamento.Ajuda">
+            <span class="alert-danger" asp-validation-for="Equipamento.Ajuda"></span>
         </div>
 
         <div class="col-12">
-            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            @if (Model.RelacaoCargas.Any())
+            {
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-controller="RelacaoCarga" asp-action="Cadastrar">Cadastrar Relação de Carga</a>
+            }
             <a class="btn btn-danger" asp-controller="Equipamentos" asp-action="Index">Voltar</a>
         </div>
     </form>
