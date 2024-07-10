@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AcademiaFacil.Models;
 
@@ -42,7 +43,7 @@ public class Equipamento
     [Required(ErrorMessage = "A relação das cargas deve ser informada.")]
     public int? RelacaoCargasId { get; set; }
 
-    public virtual RelacaoCargas RelacaoCargas { get; set; }
+    public virtual RelacaoCargas? RelacaoCargas { get; set; }
 
     [DataType(DataType.Url, ErrorMessage = "Url inválida.")]
     public string? Ajuda { get; set; }
