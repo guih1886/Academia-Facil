@@ -6,9 +6,9 @@ namespace AcademiaFacil.Models;
 [Owned]
 public class Equipamento
 {
-    public Equipamento()    {    }
+    public Equipamento() { }
 
-    public Equipamento(int id, bool ativo, string imagem, string nome, string descricao, IEnumerable<float> relacaoCargas, string? ajuda)
+    public Equipamento(int id, bool ativo, string imagem, string nome, string descricao, List<float> relacaoCargas, string? ajuda)
     {
         Id = id;
         Ativo = ativo;
@@ -37,7 +37,7 @@ public class Equipamento
     public string? Descricao { get; set; }
 
     [Required(ErrorMessage = "A relação das cargas deve ser informada.")]
-    public IEnumerable<float>? RelacaoCargas { get; set; }
+    public List<float>? RelacaoCargas { get; set; }
 
     [DataType(DataType.Url, ErrorMessage = "Url inválida.")]
     public string? Ajuda { get; set; }
