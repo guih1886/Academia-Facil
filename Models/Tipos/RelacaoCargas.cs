@@ -26,6 +26,6 @@ public class RelacaoCargas
     public string? Relacao { get; set; }
 
     [Required(ErrorMessage = "A descrição deve ser informada."), NotNull]
-    [StringLength(150, MinimumLength = 10, ErrorMessage = "Descrição do tippo do exercício incorreto.")]
+    [StringLength(150, MinimumLength = 10, ErrorMessage = "Descrição da relação muito curta.")]
     public string? Descricao { get; set; }
 }
