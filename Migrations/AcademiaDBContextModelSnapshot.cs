@@ -24,11 +24,11 @@ namespace AcademiaFacil.Migrations
 
             modelBuilder.Entity("AcademiaFacil.Models.Entidades.Aluno", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
@@ -45,7 +45,8 @@ namespace AcademiaFacil.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DataNascimento")
+                    b.Property<DateTime?>("DataNascimento")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DataProximoPagamento")
@@ -54,7 +55,8 @@ namespace AcademiaFacil.Migrations
                     b.Property<DateTime?>("DataUltimoPagamento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DiaPagamentoPlano")
+                    b.Property<int?>("DiaPagamentoPlano")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -155,11 +157,12 @@ namespace AcademiaFacil.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("RelacaoCargas")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RelacaoCargasId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RelacaoCargasId");
 
                     b.ToTable("Equipamentos");
                 });
@@ -218,6 +221,31 @@ namespace AcademiaFacil.Migrations
                     b.HasIndex("TreinoId");
 
                     b.ToTable("Exercicios");
+                });
+
+            modelBuilder.Entity("AcademiaFacil.Models.Tipos.RelacaoCargas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Relacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RelacaoCargas");
                 });
 
             modelBuilder.Entity("AcademiaFacil.Models.Tipos.TipoExercicio", b =>
@@ -281,6 +309,17 @@ namespace AcademiaFacil.Migrations
                     b.HasIndex("ProfessorId");
 
                     b.ToTable("Treinos");
+                });
+
+            modelBuilder.Entity("AcademiaFacil.Models.Equipamento", b =>
+                {
+                    b.HasOne("AcademiaFacil.Models.Tipos.RelacaoCargas", "RelacaoCargas")
+                        .WithMany()
+                        .HasForeignKey("RelacaoCargasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RelacaoCargas");
                 });
 
             modelBuilder.Entity("AcademiaFacil.Models.Exercicio", b =>

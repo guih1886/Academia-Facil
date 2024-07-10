@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AcademiaFacil.Migrations
 {
     /// <inheritdoc />
-    public partial class Criandoobancodedados : Migration
+    public partial class Adicionadomodeloderelaçãodecargas3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,39 +18,22 @@ namespace AcademiaFacil.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    DiaPagamentoPlano = table.Column<int>(type: "int", nullable: false),
                     TipoPlano = table.Column<int>(type: "int", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConfirmacaoSenha = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Imagem = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Celular = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataPagamentoPlano = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataUltimoPagamento = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DataProximoPagamento = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Alunos", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Equipamentos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    Imagem = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    RelacaoCargas = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ajuda = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Equipamentos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +54,21 @@ namespace AcademiaFacil.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Professores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RelacaoCargas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    Relacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RelacaoCargas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,6 +106,30 @@ namespace AcademiaFacil.Migrations
                         name: "FK_Treinos_Professores_ProfessorId",
                         column: x => x.ProfessorId,
                         principalTable: "Professores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Equipamentos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    Imagem = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    RelacaoCargasId = table.Column<int>(type: "int", nullable: false),
+                    Ajuda = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipamentos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Equipamentos_RelacaoCargas_RelacaoCargasId",
+                        column: x => x.RelacaoCargasId,
+                        principalTable: "RelacaoCargas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -153,6 +175,11 @@ namespace AcademiaFacil.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Equipamentos_RelacaoCargasId",
+                table: "Equipamentos",
+                column: "RelacaoCargasId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Exercicios_EquipamentoId",
                 table: "Exercicios",
                 column: "EquipamentoId");
@@ -190,6 +217,9 @@ namespace AcademiaFacil.Migrations
 
             migrationBuilder.DropTable(
                 name: "Treinos");
+
+            migrationBuilder.DropTable(
+                name: "RelacaoCargas");
 
             migrationBuilder.DropTable(
                 name: "Professores");
