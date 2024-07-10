@@ -33,8 +33,4 @@
     <Folder Include="Data\Interfaces\Controller\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="Views\Shared\_Menu.cshtml" />
-  </ItemGroup>
-
 </Project>
