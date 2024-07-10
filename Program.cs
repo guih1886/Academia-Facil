@@ -13,6 +13,7 @@ string connectionString = builder.Configuration.GetConnectionString("AcademiaDB"
 builder.Services.AddDbContext<AcademiaDBContext>(opts => opts.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+builder.Services.AddScoped<IEquipamentoRepository, EquipamentoRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
