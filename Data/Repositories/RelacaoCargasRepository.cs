@@ -43,4 +43,9 @@ public class RelacaoCargasRepository : IRelacaoCargasRepository
     {
         return _dbContext.RelacaoCargas.ToList();
     }
+
+    public RelacaoCargas? GetRelacaoCargasById(int? relacaoCargasId)
+    {
+        return _dbContext.RelacaoCargas.FirstOrDefault(r => r.Id == relacaoCargasId);
+    }
 }

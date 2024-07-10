@@ -8,4 +8,5 @@ public interface IRelacaoCargasRepository
     bool DeleteRelacaoCarga(RelacaoCargas relacao);
     RelacaoCargas? FindById(int id);
     List<RelacaoCargas>? GetRelacaoCargas();
+    RelacaoCargas? GetRelacaoCargasById(int? relacaoCargasId);
 }
