@@ -34,7 +34,9 @@ public class EquipamentosController : Controller
     {
         Equipamento? equipamento = _equipamentoRepository.FindById(id);
         if (equipamento == null) return NotFound("Equipamento não encontrado.");
-        return View(equipamento);
+        List<RelacaoCargas>? listaRelacaoCargas = _relacaoCargasRepository.GetRelacaoCargas();
+        EquipamentoViewModel equipamentoViewModel = new EquipamentoViewModel(equipamento, listaRelacaoCargas);
+        return View(equipamentoViewModel);
     }
 
     public IActionResult Deletar(int id)
@@ -60,7 +62,9 @@ public class EquipamentosController : Controller
         }
         else
         {
-            return View("Editar", equipamento);
+            var listaCargas = _relacaoCargasRepository.GetRelacaoCargas();
+            EquipamentoViewModel equipamentoViewModel = new EquipamentoViewModel(equipamento, listaCargas);
+            return View("Editar", equipamentoViewModel);
         }
     }
 
