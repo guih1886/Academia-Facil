@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Exercicio\" />
     <Folder Include="Controllers\Treino\" />
     <Folder Include="Controllers\Professor\" />
     <Folder Include="Data\Interfaces\Controller\" />

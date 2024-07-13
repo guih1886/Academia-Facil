@@ -1,0 +1,48 @@
+﻿@using AcademiaFacil.Models
+@model Exercicio;
+@{
+    ViewData["Title"] = "Cadastro de Exercícios";
+}
+<div class="card-header">@ViewData["Title"]</div>
+<div class="container card-body">
+    <form class="row g-3" asp-controller="Equipamentos" asp-action="CadastrarEquipamento" method="post">
+        TipoExercicio = tipoExercicio;
+        Repeticoes = repeticoes;
+        Carga = carga;
+        Ajuda = ajuda;
+        Observacao = observacao;
+        Equipamento = equipamento;
+        <div class="col-md-6 ">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" asp-for="Nome" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Nome"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" asp-for="Descricao" maxlength="100">
+            <span class="alert-danger" asp-validation-for="Descricao"></span>
+        </div>
+        @* TODO Ajustar o tipo do exercicio *@
+        <div class="col-md-6 ">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" asp-for="Descricao" maxlength="100">
+            <span class="alert-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+
+
+
+        <div class="col-12">
+            @if (Model.RelacaoCargas.Any())
+            {
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-controller="RelacaoCarga" asp-action="Cadastrar">Cadastrar Relação de Carga</a>
+            }
+            <a class="btn btn-danger" asp-controller="Equipamentos" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>

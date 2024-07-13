@@ -1,0 +1,53 @@
+﻿@using AcademiaFacil.Models
+@model List<Exercicio>;
+@{
+    ViewData["Title"] = "Lista de Exercícios";
+}
+<div class="card-header">@ViewData["Title"]</div>
+@if (Model.Any())
+{
+    <div class="container-fluid card-body overflow-scroll">
+        <table class="table table-bordered table-responsive text-center">
+            <thead class="align-content-center">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Ativo</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Equipamento</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="text-nowrap">
+                @foreach (var exercicio in Model)
+                {
+                    <tr class="align-text-top">
+                        <td>@exercicio.Id</td>
+                        <td>
+                            <input class="form-check-input" type="checkbox" id="ativo" asp-for="@exercicio.Ativo" disabled>
+                        </td>
+                        <td class="text-wrap">@exercicio.Nome</td>
+                        <td class="text-wrap">@exercicio.TipoExercicio</td>
+                        <td>@exercicio.Equipamento</td>
+                        <td>
+                            <a role="button" class="btn btn-warning" asp-route-id="@exercicio.Id" asp-controller="" asp-action="">Editar</a>
+                            <a role="button" class="btn btn-danger" asp-route-id="@exercicio.Id" asp-controller="" asp-action="" onclick="return confirmacaoDeletar('@exercicio.Nome')">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            function confirmacaoDeletar(nome) {
+                return confirm(`Deseja mesmo excluir o exercício ${nome}?`);
+            }
+        </script>
+    </div>
+}
+else
+{
+    <h3 class="text-center pt-3">Nenhum exercício cadastrado.</h3>
+    <div class="text-center pt-3">
+        <a class="btn btn-primary" asp-controller="Exercicios" asp-action="Cadastrar">Cadastrar exercício</a>
+    </div>
+}
