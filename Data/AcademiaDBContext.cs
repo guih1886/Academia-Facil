@@ -9,6 +9,12 @@ public class AcademiaDBContext : DbContext
 {
     public AcademiaDBContext(DbContextOptions<AcademiaDBContext> options) : base(options) { }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Equipamento>().HasOne(e => e.RelacaoCargas).WithMany().HasForeignKey(e => e.RelacaoCargasId).OnDelete(DeleteBehavior.Restrict);
+        base.OnModelCreating(modelBuilder);
+    }
+
     public DbSet<RelacaoCargas> RelacaoCargas { get; set; }
     public DbSet<Aluno> Alunos { get; set; }
     public DbSet<Professor> Professores { get; set; }
