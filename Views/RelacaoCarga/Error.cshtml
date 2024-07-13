@@ -1,0 +1,14 @@
+﻿@using AcademiaFacil.Models.View;
+@model ErrorModel
+@{
+    ViewData["Title"] = $"Error {Model.StatusCode}";
+}
+<div class="card mb-3 text-center">
+    <img src="@Model.Imagem" class="card-img-top align-self-center" style="max-width: 45rem" alt="ErroImage">
+    <div class="card-body">
+        <h5 class="card-title">Status Code @Model.StatusCode</h5>
+        <p class="card-text">@Model.Mensagem</p>
+        <a class="btn btn-primary" asp-controller="Equipamentos" asp-action="Index">Equipamentos</a>
+        <a class="btn btn-dark" asp-controller="RelacaoCarga" asp-action="Index">Voltar</a>
+    </div>
+</div>
