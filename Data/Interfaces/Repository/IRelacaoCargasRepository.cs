@@ -9,4 +9,5 @@ public interface IRelacaoCargasRepository
     RelacaoCargas? FindById(int id);
     List<RelacaoCargas>? GetRelacaoCargas();
     RelacaoCargas? GetRelacaoCargasById(int? relacaoCargasId);
+    void UpdateRelacaoCarga(int id, RelacaoCargas relacao);
 }

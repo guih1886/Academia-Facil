@@ -1,5 +1,6 @@
 ﻿using AcademiaFacil.Data.Interfaces.Repository;
 using AcademiaFacil.Models.Tipos;
+using AcademiaFacil.Models.View;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiaFacil.Controllers.RelacaoCarga;
@@ -24,22 +25,39 @@ public class RelacaoCargaController : Controller
         return View();
     }
 
-    public IActionResult Editar()
+    public IActionResult Editar(int id)
     {
-        return View();
+        RelacaoCargas? relacao = _relacaoCargasRepository.FindById(id);
+        return View(relacao);
+    }
+
+    public IActionResult EditarRelacaoCarga(int id, RelacaoCargas rel)
+    {
+        if (ModelState.IsValid)
+        {
+            _relacaoCargasRepository.UpdateRelacaoCarga(id, rel);
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return View("Editar", rel);
+        }
+
     }
 
     public IActionResult Deletar(int id)
     {
         RelacaoCargas? relacao = _relacaoCargasRepository.FindById(id);
         if (relacao == null) return NotFound("Relação de carga não encontrado.");
-        if (_relacaoCargasRepository.DeleteRelacaoCarga(relacao))
+        try
         {
+            _relacaoCargasRepository.DeleteRelacaoCarga(relacao);
             return RedirectToAction("Index");
         }
-        else
+        catch (Exception)
         {
-            return ValidationProblem("Erro ao excluir a relação de carga.");
+            ErrorModel errorModel = new ErrorModel("400", "Não é possível excluir a relação de carga, ao menos um equipamento está a utilizando. Exclua o(s) equipamento(s) antes.", "https://thumbs.dreamstime.com/b/error-rubber-stamp-word-error-inside-illustration-109026446.jpg");
+            return View("Error", errorModel);
         }
     }
 
