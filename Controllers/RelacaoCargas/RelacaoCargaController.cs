@@ -4,7 +4,6 @@ using AcademiaFacil.Models.View;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiaFacil.Controllers.RelacaoCarga;
-
 public class RelacaoCargaController : Controller
 {
     private IRelacaoCargasRepository _relacaoCargasRepository;
@@ -73,5 +72,11 @@ public class RelacaoCargaController : Controller
         {
             return View("Cadastrar", rel);
         }
+    }
+
+    [HttpGet("RelacaoCargas/{id}")]
+    public IActionResult GetCarga(int id)
+    {
+        return Ok(_relacaoCargasRepository.GetRelacaoCargasById(id));
     }
 }
