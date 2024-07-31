@@ -15,6 +15,8 @@ builder.Services.AddDbContext<AcademiaDBContext>(opts => opts.UseSqlServer(conne
 builder.Services.AddScoped<IRelacaoCargasRepository, RelacaoCargasRepository>();
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 builder.Services.AddScoped<IEquipamentoRepository, EquipamentoRepository>();
+builder.Services.AddScoped<ITipoExercicioRepository, TiposExercicioRepository>();
+builder.Services.AddScoped<IExercicioRepository, ExercicioRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
