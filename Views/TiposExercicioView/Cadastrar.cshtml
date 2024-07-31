@@ -1,0 +1,39 @@
+﻿@using AcademiaFacil.Data.Enums
+@using AcademiaFacil.Models.Tipos;
+@model TipoExercicio;
+@{
+    ViewData["Title"] = "Cadastro de Tipos de Exercícios";
+}
+<div class="card-header">@ViewData["Title"]</div>
+<div class="container card-body">
+    <form class="row g-3" asp-controller="TiposExercicioView" asp-action="CadastrarTipoExercicio" method="post">
+
+        <div class="col-md-2">
+            <label for="nivel" class="form-label">Nível</label>
+            <select class="form-select" id="nivel" required asp-for="Nivel">
+                @foreach (var item in Enum.GetValues(typeof(Nivel)))
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+            <span class="alert-danger" asp-validation-for="Nivel"></span>
+        </div>
+
+        <div class="col-md-10">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" asp-for="Nome" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Nome"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" asp-for="Descricao" maxlength="150">
+            <span class="alert-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a class="btn btn-danger" asp-controller="TiposExercicioView" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>
