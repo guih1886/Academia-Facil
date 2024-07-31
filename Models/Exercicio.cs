@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 
 namespace AcademiaFacil.Models;
@@ -43,7 +44,7 @@ public class Exercicio
     [Required(ErrorMessage = "O tipo do exercício deve ser inforado."), NotNull]
     public TipoExercicio? TipoExercicio { get; set; }
 
-    [Required(ErrorMessage = "O número de repetições deve ser informado.")]
+    [Required(ErrorMessage = "O número de repetições deve ser informado."), NotNull]
     public int Repeticoes { get; set; }
 
     [Required(ErrorMessage = "A carga deve ser informado.")]
