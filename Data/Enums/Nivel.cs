@@ -1,9 +1,11 @@
-﻿namespace AcademiaFacil.Data.Enums;
+﻿using System.ComponentModel;
+
+namespace AcademiaFacil.Data.Enums;
 
 public enum Nivel
 {
-    INICIANTE,
-    INTERMEDIARIO,
-    AVANCADO,
-    MESTRE
+    Iniciante,
+    Intermediário,
+    Avançado,
+    Mestre
 }
