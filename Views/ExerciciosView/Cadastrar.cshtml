@@ -1,0 +1,104 @@
+﻿@using AcademiaFacil.Data.Enums
+@using AcademiaFacil.Models
+@using AcademiaFacil.Models.Tipos
+@using AcademiaFacil.Models.View
+@using Newtonsoft.Json
+@model Exercicio;
+@{
+    ViewData["Title"] = "Cadastro de Exercícios";
+    List<TipoExercicio> listaTiposExercicio = ViewBag.TiposExercicios;
+    List<Equipamento> listaEquipamentos = ViewBag.Equipamentos;
+}
+<div class="card-header">@ViewData["Title"]</div>
+<div class="container card-body">
+    <form class="row g-3" asp-controller="ExerciciosView" asp-action="CadastrarExercicio" method="post">
+
+        <div class="col-md-6 ">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" asp-for="Nome" maxlength="50">
+            <span class="alert-danger" asp-validation-for="Nome"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" asp-for="Descricao" maxlength="100">
+            <span class="alert-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label for="nivel" class="form-label">Nível tipo exercicío</label>
+            <select class="form-select" id="nivel" required asp-for="Nivel">
+                @foreach (Nivel item in Enum.GetValues(typeof(Nivel)))
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+            <span class="alert-danger" asp-validation-for="Nivel"></span>
+        </div>
+
+        @* Lista de Tipos de Exercicíos *@
+        <div class="col-md-8">
+            <label for="tipoExercicio" class="form-label">Tipo</label>
+            @if (listaTiposExercicio.Any())
+            {
+                <select class="form-select" id="tipoExercicio" asp-for="TipoExercicio">
+                    @foreach (var item in listaTiposExercicio)
+                    {
+                        <option value="@item.Id">@item.Nivel - @item.Nome</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <select class="form-select" id="tipoExercicio" disabled>
+                    <option selected value="0">Sem tipos de exercícios cadastrados.</option>
+                </select>
+            }
+            @* <span class="alert-danger" asp-validation-for="TipoExercicio"></span> *@
+        </div>
+
+        @* Lista de Equipamentos *@
+        <div class="col-md-6 ">
+            <label for="equipamento" class="form-label">Equipamento</label>
+            @if (listaEquipamentos.Any())
+            {
+                <select class="form-select" id="equipamento" asp-for="Equipamento">
+                    @foreach (var equipamento in listaEquipamentos)
+                    {
+                        <option value="@equipamento">@equipamento.Nome</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <select class="form-select" id="equipamento" disabled>
+                    <option selected value="0">Sem equipamentos cadastrados.</option>
+                </select>
+            }
+            @* <span class="alert-danger" asp-validation-for="Equipamento"></span> *@
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="repeticao" class="form-label">Repetições</label>
+            <input type="number" class="form-control" id="repeticao" asp-for="Repeticoes" value="5" max="100">
+            <span class="alert-danger" asp-validation-for="Repeticoes"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="ajuda" class="form-label">Ajuda</label>
+            <input type="url" class="form-control" id="ajuda" asp-for="Ajuda" title="Link de ajuda para realizar o exercicío" aria->
+            <span class="alert-danger" asp-validation-for="Ajuda"></span>
+        </div>
+
+        <div class="col-md-6 ">
+            <label for="obvervacao" class="form-label">Observação</label>
+            <input type="text" class="form-control" id="obvervacao" asp-for="Observacao">
+            <span class="alert-danger" asp-validation-for="Observacao"></span>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a class="btn btn-danger" asp-controller="ExerciciosView" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>
