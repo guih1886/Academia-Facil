@@ -1,3 +1,4 @@
+using AcademiaFacil.Configuration;
 using AcademiaFacil.Data;
 using AcademiaFacil.Data.Interfaces.Repository;
 using AcademiaFacil.Data.Repositories;
@@ -24,6 +25,8 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Academia", Version = "v1" });
 });
+
+builder.Services.Configure<ConfigPadroes>(builder.Configuration.GetSection("Padroes"));
 
 var app = builder.Build();
 
