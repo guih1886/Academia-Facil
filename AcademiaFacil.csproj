@@ -30,7 +30,6 @@
     <Folder Include="Controllers\Treino\" />
     <Folder Include="Controllers\Professor\" />
     <Folder Include="Data\Interfaces\Controller\" />
-    <Folder Include="Views\Errors\" />
   </ItemGroup>
 
 </Project>
