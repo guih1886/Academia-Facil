@@ -5,15 +5,15 @@
 @using Newtonsoft.Json
 @model Exercicio;
 @{
-    ViewData["Title"] = "Cadastro de Exercícios";
-    int numeroRepeticoesPadrao = ViewBag.RepeticaoPadrao;
+    ViewData["Title"] = "Editar Exercício";
     List<TipoExercicio> listaTiposExercicio = ViewBag.TiposExercicios;
     List<Equipamento> listaEquipamentos = ViewBag.Equipamentos;
-    List<RelacaoCargas> listaRelacaoCargas = ViewBag.RelacaoCargas;
 }
 <div class="card-header">@ViewData["Title"]</div>
 <div class="container card-body">
-    <form class="row g-3" asp-controller="ExerciciosView" asp-action="CadastrarExercicio" method="post">
+    <form class="row g-3" asp-controller="ExerciciosView" asp-action="EditarExercicio" method="post">
+
+        <input type="text" class="form-control" id="nome" asp-for="Id" maxlength="50" hidden>
 
         <div class="col-md-6 ">
             <label for="nome" class="form-label">Nome</label>
@@ -80,30 +80,10 @@
             @* <span class="alert-danger" asp-validation-for="Equipamento"></span> *@
         </div>
 
-        <div class="col-md-3 ">
+        <div class="col-md-6 ">
             <label for="repeticao" class="form-label">Repetições</label>
-            <input type="number" class="form-control" id="repeticao" asp-for="Repeticoes" value="@numeroRepeticoesPadrao" max="100">
+            <input type="number" class="form-control" id="repeticao" asp-for="Repeticoes" max="100">
             <span class="alert-danger" asp-validation-for="Repeticoes"></span>
-        </div>
-
-        <div class="col-md-3 ">
-            <label for="carga" class="form-label">Carga</label>
-            @if (listaEquipamentos.Any())
-            {
-                <select class="form-select" id="carga" asp-for="Carga">
-                    @foreach (var equipamento in listaEquipamentos)
-                    {
-                        <option value="@equipamento.Id">@listaRelacaoCargas.First(rl => rl.Id == equipamento.RelacaoCargasId).Relacao</option>
-                    }
-                </select>
-            }
-            else
-            {
-                <select class="form-select" id="carga" disabled>
-                    <option selected value="0">Sem equipamentos cadastrados.</option>
-                </select>
-            }
-            <span class="alert-danger" asp-validation-for="Carga"></span>
         </div>
 
         <div class="col-md-6 ">
@@ -118,6 +98,13 @@
             <span class="alert-danger" asp-validation-for="Observacao"></span>
         </div>
 
+        <div class="form-check ms-2">
+            <input class="form-check-input" type="checkbox" id="ativo" asp-for="Ativo">
+            <label class="form-check-label" for="ativo">
+                Ativo
+            </label>
+        </div>
+
         <div class="col-12">
             @if (!listaTiposExercicio.Any())
             {
@@ -129,7 +116,7 @@
             }
             else
             {
-                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <button class="btn btn-warning" type="submit">Editar</button>
             }
             <a class="btn btn-danger" asp-controller="ExerciciosView" asp-action="Index">Voltar</a>
         </div>
