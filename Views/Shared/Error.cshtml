@@ -8,7 +8,7 @@
     <div class="card-body">
         <h5 class="card-title">Status Code @Model.StatusCode</h5>
         <p class="card-text">@Model.Mensagem</p>
-        <a class="btn btn-primary" asp-controller="Equipamentos" asp-action="Index">Equipamentos</a>
-        <a class="btn btn-dark" asp-controller="RelacaoCarga" asp-action="Index">Voltar</a>
+        <a class="btn btn-primary" asp-controller="@Model.ControladorDoErro" asp-action="@Model.AcaoErro">@Model.TextoBotaoControladorDoErrro</a>
+        <a class="btn btn-dark" asp-controller="@Model.ControladorVoltar" asp-action="@Model.AcaoVoltar">Voltar</a>
     </div>
 </div>
