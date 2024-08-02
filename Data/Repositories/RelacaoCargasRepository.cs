@@ -22,9 +22,9 @@ public class RelacaoCargasRepository : IRelacaoCargasRepository
 
     public bool DeleteRelacaoCarga(RelacaoCargas relacao)
     {
-            _dbContext.RelacaoCargas.Remove(relacao);
-            _dbContext.SaveChanges();
-            return true;
+        _dbContext.RelacaoCargas.Remove(relacao);
+        _dbContext.SaveChanges();
+        return true;
     }
 
     public RelacaoCargas? FindById(int id)
@@ -42,12 +42,10 @@ public class RelacaoCargasRepository : IRelacaoCargasRepository
         return _dbContext.RelacaoCargas.FirstOrDefault(r => r.Id == relacaoCargasId);
     }
 
-    public void UpdateRelacaoCarga(int id, RelacaoCargas relacao)
+    public RelacaoCargas UpdateRelacaoCarga(RelacaoCargas relacao)
     {
-        RelacaoCargas? rel = FindById(id);
-        rel.Descricao = relacao.Descricao;
-        rel.Relacao = relacao.Relacao;
-        _dbContext.RelacaoCargas.Update(rel);
+        _dbContext.RelacaoCargas.Update(relacao);
         _dbContext.SaveChanges();
+        return relacao;
     }
 }

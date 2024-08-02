@@ -30,16 +30,16 @@ public class RelacaoCargaController : Controller
         return View(relacao);
     }
 
-    public IActionResult EditarRelacaoCarga(int id, RelacaoCargas rel)
+    public IActionResult EditarRelacaoCarga(RelacaoCargas relacaoCarga)
     {
         if (ModelState.IsValid)
         {
-            _relacaoCargasRepository.UpdateRelacaoCarga(id, rel);
+            _relacaoCargasRepository.UpdateRelacaoCarga(relacaoCarga);
             return RedirectToAction("Index");
         }
         else
         {
-            return View("Editar", rel);
+            return View("Editar", relacaoCarga);
         }
 
     }
@@ -55,7 +55,16 @@ public class RelacaoCargaController : Controller
         }
         catch (Exception)
         {
-            ErrorModel errorModel = new ErrorModel("400", "Não é possível excluir a relação de carga, ao menos um equipamento está a utilizando. Exclua o(s) equipamento(s) antes.", "https://thumbs.dreamstime.com/b/error-rubber-stamp-word-error-inside-illustration-109026446.jpg");
+            ErrorModel errorModel = new ErrorModel(
+                400,
+                "Não é possível excluir a relação de carga, ao menos um equipamento está a utilizando. Exclua o(s) equipamento(s) antes.",
+                "https://thumbs.dreamstime.com/b/error-rubber-stamp-word-error-inside-illustration-109026446.jpg",
+                "Equipamentos",
+                "Equipamentos",
+                "Index",
+                "RelacaoCarga",
+                "Index"
+                );
             return View("Error", errorModel);
         }
     }
